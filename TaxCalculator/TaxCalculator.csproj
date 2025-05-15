@@ -9,11 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Tests\TaskCalculatorTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Tests\TaskCalculatorTests.cs" />
+    <Compile Remove="Tests\**" />
+    <EmbeddedResource Remove="Tests\**" />
+    <None Remove="Tests\**" />
   </ItemGroup>
 
   <ItemGroup>

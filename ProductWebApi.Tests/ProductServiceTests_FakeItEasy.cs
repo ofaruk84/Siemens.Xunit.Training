@@ -1,12 +1,11 @@
-﻿using FakeItEasy;
-using FluentAssertions;
+using FakeItEasy;
 using Moq;
 using ProductWebApi.Modals;
 using ProductWebApi.Repositories;
 using ProductWebApi.Services;
-using Xunit;
+using FluentAssertions;
 
-namespace ProductWebApi.ProductWebApi.Tests
+namespace ProductWebApi.Tests
 {
     public class ProductServiceTests_FakeItEasy
     {
@@ -14,6 +13,7 @@ namespace ProductWebApi.ProductWebApi.Tests
         public void GetProductName_WhenProductExists_ReturnsName()
         {
             var fakeRepo = A.Fake<IProductRepository>();
+
             A.CallTo(() => fakeRepo.GetById(1)).Returns(new Product { Id = 1, Name = "Notebook" });
 
             var service = new ProductService(fakeRepo);

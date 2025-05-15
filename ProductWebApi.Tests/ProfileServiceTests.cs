@@ -1,10 +1,10 @@
-﻿using Moq;
+using Moq;
 using ProductWebApi.Modals;
 using ProductWebApi.Services;
 using Xunit;
 using FluentAssertions;
 
-namespace ProductWebApi.ProductWebApi.Tests
+namespace ProductWebApi.Tests
 {
     public class ProfileServiceTests
     {
