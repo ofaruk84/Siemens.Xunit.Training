@@ -10,10 +10,18 @@ namespace TaxCalculator.Tests
 {
     public class TaxCalculatorTests
     {
+        private readonly  TaxCalculator _taxCalculator;
+        public TaxCalculatorTests(TaxCalculator taxCalculator)
+        {
+
+            _taxCalculator = taxCalculator;
+
+        }
         [Fact]
         public void CalculateTax_WithValidIncome_ReturnsExpectedTax()
         {
             var calculator = new TaxCalculator();
+
             var tax = calculator.CalculateTax(1000);
             Assert.Equal(150, tax);
         }
@@ -50,6 +58,22 @@ namespace TaxCalculator.Tests
 
             act.Should().Throw<ArgumentException>()
                .WithMessage("Income must be non-negative.");
+        }
+
+        [Theory]
+        [InlineData(100, 20)]
+        [InlineData(200, 40)]
+        [InlineData(0, 0)]
+        [InlineData(50.5, 10.1)]
+        public void CalculateTax_ShouldReturnExpectedTax(decimal amount, decimal expectedTax)
+        {
+            TaxCalculator _calculator = new();
+
+            // Act
+            var result = _calculator.CalculateTax(amount);
+
+            // Assert
+            result.Should().BeApproximately(expectedTax, 0.01m);
         }
     }
 }
